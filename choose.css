@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #9C27B0 0%, #673AB7 100%);
+} */
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+/* Left Section Styles
+.left-section {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+} */
+
+.media-elements {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.media-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Right Section Styles */
+.right-section {
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+.logo {
+  text-align: right;
+  /* margin-bottom: 5rem; */
+}
+
+.logo img {
+  height: 40px;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.options {
+  display: flex;
+  gap: 2rem;
+}
+
+.option-btn {
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: white;
+  text-align: center;
+}
+
+.option-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.movie-btn {
+  background-color: #FAA307;
+}
+
+.books-btn {
+  background-color: #DC2F02;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .left-section,
+  .right-section {
+    width: 100%;
+    height: 50%;
+  }
+  
+  .logo {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .right-section {
+    padding: 2rem;
+  }
+  
+  .content {
+    gap: 2rem;
+  }
+  
+  .options {
+    flex-direction: column;
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .option-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .logo img {
+    height: 30px;
+  }
+  
+  .left-section {
+    height: 40%;
+  }
+  
+  .right-section {
+    height: 60%;
+  }
+}

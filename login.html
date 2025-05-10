@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="login.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+  <div class="login-container">
+    <!-- Background image -->
+    <div class="background-image">
+      <img src="c:\Users\nikit\Downloads\circles-1743740021542.png" alt="Background">
+    </div>
+    
+    <!-- Login Card -->
+    <div class="login-card">
+      <h1>Login</h1>
+      
+      <form class="login-form">
+        <!-- Email Field -->
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email" required>
+          <i class="ri-mail-line"></i>
+        </div>
+        
+        <!-- Password Field -->
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Password" required>
+          <i class="ri-eye-off-line toggle-password"></i>
+        </div>
+        
+        <!-- Forgot Password Link -->
+        <div class="forgot-password">
+          <a href="#">Forgot password?</a>
+        </div>
+        
+        <!-- Login Button -->
+        <button type="submit" class="login-button">Login</button>
+        
+        <!-- OR Divider -->
+        <div class="divider">
+          <span>OR</span>
+        </div>
+        
+        <!-- Google Login Button -->
+        <button type="button" class="google-button">
+          <i class="ri-google-fill"></i>
+          Continue with Google
+        </button>
+        
+        <!-- Register Link -->
+        <div class="register-link">
+          Don't have an account? <a href="#">Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Toggle password visibility
+    document.querySelector('.toggle-password').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        this.classList.remove('ri-eye-off-line');
+        this.classList.add('ri-eye-line');
+      } else {
+        passwordInput.type = 'password';
+        this.classList.remove('ri-eye-line');
+        this.classList.add('ri-eye-off-line');
+      }
+    });
+  </script>
+</body>
+</html>
