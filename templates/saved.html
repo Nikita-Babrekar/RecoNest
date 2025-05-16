@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecoNest - Movies & Books</title>
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/saved.css') }}">
+</head>
+<body>
+  <div class="container">
+    <main class="content">
+      <!-- Favorites Section -->
+      <div class="favorites-section">
+        <div class="section-header">
+          <h2 class="section-title">Your Favorites</h2>
+          <div class="time-filter">
+            <button class="time-filter-btn">
+              Last 24 hrs
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron-down">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="dropdown-menu">
+              <div class="dropdown-item selected">Last 24 hrs</div>
+              <div class="dropdown-item">Last Week</div>
+              <div class="dropdown-item">Last Month</div>
+              <div class="dropdown-item">Last Year</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="favorites-grid">
+          <!-- Favorites will be dynamically populated, for now let's add some static examples -->
+          <div class="favorite-card">
+            <div class="poster-container">
+              <img src="https://m.media-amazon.com/images/M/MV5BZjI1MTM3YzAtNGM5MS00MDQwLTk4NzMtZTExNzgzNzE5N2ZlXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" alt="The Diplomat">
+            </div>
+            <div class="favorite-title">The Diplomat</div>
+          </div>
+          <div class="favorite-card">
+            <div class="poster-container">
+              <img src="https://m.media-amazon.com/images/M/MV5BZjI1MTM3YzAtNGM5MS00MDQwLTk4NzMtZTExNzgzNzE5N2ZlXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" alt="The Diplomat">
+            </div>
+            <div class="favorite-title">The Diplomat</div>
+          </div>
+          <div class="favorite-card">
+            <div class="poster-container">
+              <img src="https://m.media-amazon.com/images/M/MV5BZjI1MTM3YzAtNGM5MS00MDQwLTk4NzMtZTExNzgzNzE5N2ZlXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" alt="The Diplomat">
+            </div>
+            <div class="favorite-title">The Diplomat</div>
+          </div>
+          <div class="favorite-card">
+            <div class="poster-container">
+              <img src="https://m.media-amazon.com/images/M/MV5BZjI1MTM3YzAtNGM5MS00MDQwLTk4NzMtZTExNzgzNzE5N2ZlXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" alt="The Diplomat">
+            </div>
+            <div class="favorite-title">The Diplomat</div>
+          </div>
+          <div class="favorite-card">
+            <div class="poster-container">
+              <img src="https://m.media-amazon.com/images/M/MV5BZjI1MTM3YzAtNGM5MS00MDQwLTk4NzMtZTExNzgzNzE5N2ZlXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" alt="The Diplomat">
+            </div>
+            <div class="favorite-title">The Diplomat</div>
+          </div>
+        </div>
+      </div>
+    
+      
+      
+    </main>
+  </div>
+  <script>
+  // Toggle the dropdown menu when the button is clicked
+  document.querySelector('.time-filter-btn').addEventListener('click', function () {
+    document.querySelector('.dropdown-menu').classList.toggle('show');
+  });
+
+  // Optional: Handle dropdown item clicks and update the button text
+  const items = document.querySelectorAll('.dropdown-item');
+  items.forEach(item => {
+    item.addEventListener('click', function () {
+      // Remove 'selected' class from all items
+      items.forEach(i => i.classList.remove('selected'));
+
+      // Add 'selected' class to clicked item
+      item.classList.add('selected');
+
+      // Update button text
+      document.querySelector('.time-filter-btn').childNodes[0].nodeValue = item.textContent + ' ';
+      
+      // Hide dropdown
+      document.querySelector('.dropdown-menu').classList.remove('show');
+    });
+  });
+
+  // Optional: Close dropdown when clicking outside
+  document.addEventListener('click', function (event) {
+    const isClickInside = document.querySelector('.time-filter').contains(event.target);
+    if (!isClickInside) {
+      document.querySelector('.dropdown-menu').classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>

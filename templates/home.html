@@ -1,0 +1,115 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RecoNest - Movies & Books</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/RecoNest logo.png') }}" alt="RecoNest Logo" />
+      </div>
+
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search movies by tag, title, or mood"
+          readonly
+        />
+        <div class="tags-container">
+          <div class="tag">FeelGood</div>
+          <div class="tag">Heartwarming</div>
+          <div class="tag">ChillVibes</div>
+          <div class="tag">Funny</div>
+          <div class="tag">MindBlown</div>
+          <div class="tag">RomanticMood</div>
+          <div class="tag">Sad</div>
+          <div class="tag">HighEnergy</div>
+          <div class="tag">Kdrama</div>
+          <div class="tag">TrendingNow</div>
+          <div class="tag">Bollywood</div>
+          <div class="tag">Anime</div>
+          <div class="tag">FanFavorite</div>
+          <div class="tag">OscarWinner</div>
+          <div class="tag">CrimeMinds</div>
+          <div class="tag">Hollywood</div>
+          <div class="tag">Thriller</div>
+          <div class="tag">Adventure</div>
+          <div class="tag">Horror</div>
+          <div class="tag rating">5 ⭐</div>
+          <div class="tag rating">3 ⭐</div>
+          <div class="tag">Comedy</div>
+        </div>
+      </div>
+
+      <div class="user-actions">
+        <div class="icon-wrapper">
+          <button class="bookmark-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+            </svg>
+          </button>
+          <div class="dot"></div>
+        </div>
+        <div class="icon-wrapper">
+          <button class="profile-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="8" r="5"></circle>
+              <path d="M20 21a8 8 0 1 0-16 0"></path>
+            </svg>
+          </button>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="content">
+      <!-- Dynamic Content -->
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.querySelector('.search-input');
+      const tagsContainer = document.querySelector('.tags-container');
+      const tags = document.querySelectorAll('.tag');
+
+      let selectedTags = [];
+
+      searchInput.addEventListener('click', function () {
+        tagsContainer.classList.add('show');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (!document.querySelector('.search-container').contains(event.target)) {
+          tagsContainer.classList.remove('show');
+        }
+      });
+
+      tags.forEach(tag => {
+        tag.addEventListener('click', function () {
+          const tagText = tag.innerText;
+          if (!selectedTags.includes(tagText)) {
+            selectedTags.push(tagText);
+          } else {
+            selectedTags = selectedTags.filter(t => t !== tagText);
+          }
+          searchInput.value = selectedTags.join(', ');
+        });
+      });
+
+      console.log('RecoNest search page loaded!');
+    });
+  </script>
+</body>
+</html>

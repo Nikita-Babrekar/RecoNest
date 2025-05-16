@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+  <div class="login-container">
+    <!-- Background image -->
+    <div class="background-image">
+      <img src="{{ url_for('static', filename='images/circles-1743740021542.png') }}" alt="Background">
+    </div>
+    
+    <!-- Login Card -->
+    <div class="login-card">
+      <h1>Login</h1>
+      
+      <form class="login-form">
+        <!-- Email Field -->
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email" required>
+          <i class="ri-mail-line"></i>
+        </div>
+        
+        <!-- Password Field -->
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Password" required>
+          <i class="ri-eye-off-line toggle-password"></i>
+        </div>
+        
+        <!-- Forgot Password Link -->
+        <div class="forgot-password">
+          <a href="#">Forgot password?</a>
+        </div>
+        
+        <!-- Login Button -->
+        <button type="submit" class="login-button">Login</button>
+        
+        <!-- OR Divider -->
+        <div class="divider">
+          <span>OR</span>
+        </div>
+        
+        <!-- Google Login Button -->
+        <button type="button" class="google-button" id="google-login">
+          <i class="ri-google-fill"></i>
+          Continue with Google
+        </button>
+        
+        <!-- Register Link -->
+        <div class="register-link">
+          Don't have an account? <a href="#">Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Toggle password visibility
+    document.querySelector('.toggle-password').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        this.classList.remove('ri-eye-off-line');
+        this.classList.add('ri-eye-line');
+      } else {
+        passwordInput.type = 'password';
+        this.classList.remove('ri-eye-line');
+        this.classList.add('ri-eye-off-line');
+      }
+    });
+  </script>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  
+  <!-- Firebase Configuration -->
+  <script>
+    // Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCVbzTMjEQweM4fmygqW4DvUtMPZggJmt0",
+      authDomain: "reconest-42f2a.firebaseapp.com",
+      projectId: "reconest-42f2a",
+      storageBucket: "reconest-42f2a.appspot.com",
+      messagingSenderId: "58481636991",
+      appId: "1:58481636991:web:ae5d29204e9c45e990314a"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <!-- Google Login Handler -->
+  <script>
+    document.getElementById('google-login').addEventListener('click', async function() {
+      try {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const result = await firebase.auth().signInWithPopup(provider);
+        
+        // Show loading state
+        const googleBtn = document.getElementById('google-login');
+        googleBtn.innerHTML = '<i class="ri-loader-4-line"></i> Signing in...';
+        googleBtn.disabled = true;
+
+        // Send token to backend
+        const response = await fetch('/api/auth/google', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id_token: await result.user.getIdToken()
+          })
+        });
+
+        if (response.ok) {
+          window.location.href = '/home'; // Redirect to home page
+        } else {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Login failed');
+        }
+      } catch (error) {
+        console.error('Google login error:', error);
+        
+        // Reset button state
+        const googleBtn = document.getElementById('google-login');
+        googleBtn.innerHTML = '<i class="ri-google-fill"></i> Continue with Google';
+        googleBtn.disabled = false;
+        
+        // Show error to user
+        alert('Login failed: ' + error.message);
+      }
+    });
+  </script>
+</body>
+</html>

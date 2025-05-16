@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecoNest - Movies & Books</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/choose.css') }}">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Section with 3D Media Elements -->
+    <div class="left-section">
+      <div class="media-elements">
+        <img src="{{ url_for('static', filename='images/chooseimg.png') }}" alt="Media Elements" class="media-img">
+            </div>
+    </div>
+    
+    <!-- Right Section with Logo and Options -->
+    <div class="right-section">
+      <div class="logo">
+        <img src="RecoNest logo.png" alt="RecoNest Logo">
+      </div>
+      
+      <div class="content">
+        <h1>What you want to watch?</h1>
+        
+        <div class="options">
+          <a href="#" class="option-btn movie-btn">Movie</a>
+          <a href="#" class="option-btn books-btn">Books</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('RecoNest page loaded!');
+    });
+  </script>
+</body>
+</html>
