@@ -6,7 +6,7 @@ RecoNest is a smart, user-friendly web application that helps users discover per
 Built with a modern tech stack, RecoNest solves the challenge of endless browsing by suggesting content users will actually enjoy  saving time and enhancing the discovery experience.
 
 
-
+<img src="reconest poster.png" alt="" border="0" class="center">
 ##🚀 Features
 
  Google Login for quick and secure access.
